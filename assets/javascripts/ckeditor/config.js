@@ -1,6 +1,6 @@
 CKEDITOR.editorConfig = function( config )
 {
-  config.toolbar_mini = [
+  config.toolbar = [
     { name: 'document', items: [ 'Source']},
     { name: 'insert', items: ['custom_image','custom_codesnippet']},
     { name: 'simplelinks', items: ['simple_link']},

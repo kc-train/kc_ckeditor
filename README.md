@@ -1,31 +1,44 @@
-# KcCkeditor
+# 说明
 
-TODO: Write a gem description
+在 ckeditor 的基础上增加了自定义插件：超链接插件，图片上传插件，代码显示插件
 
-## Installation
-
-Add this line to your application's Gemfile:
+## 安装
 
 ```ruby
-gem 'kc_ckeditor'
+gem 'kc_ckeditor',
+  :github => "kc-train/kc_ckeditor",
+  :tag    => "0.0.1"
 ```
 
-And then execute:
+然后执行:
 
     $ bundle
 
-Or install it yourself as:
 
-    $ gem install kc_ckeditor
+## 使用
+import styles 到  `app/assets/stylesheets/application.scss:`
 
-## Usage
+```scss
+@import 'kc_ckeditor'
+```
 
-TODO: Write usage instructions here
+require Javascripts 到 `app/assets/javascripts/application.js:`
 
-## Contributing
+```js
+//= require kc_ckeditor
+```
 
-1. Fork it ( https://github.com/[my-github-username]/kc_ckeditor/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+Form helpers:  
+```haml
+= form_for @page do |form|
+  = form.cktext_area :notes, :class => 'someclass', :ckeditor => {:language => 'zh-cn'}
+
+  = form.cktext_area :content, :value => 'Default value', :id => 'sometext'
+
+  = cktext_area :page, :info, :cols => 40, :ckeditor => {:uiColor => '#AADC6E'}
+```
+
+SimpleForm:  
+```haml
+  = form.input :content, :as => :ckeditor, :input_html => { :ckeditor => {:uiColor => '#AADC6E'} }
+```
